@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+	<button id="test">点我有惊喜</button>
+	<script>
+		var btn = document.getElementById('test');
+		btn.onclick = saveLocal(123,'nali',true);
+
+		function saveLocal(id, key, value){
+
+			console.log(0);
+			var seller = window.localStorage.__seller__;
+			if (!seller) {
+
+			console.log(1);
+				seller = {};
+				seller[id] = {};
+			}else{
+
+			console.log(2);
+				seller = JSON.parse(seller);
+				if (!seller[id]) {
+
+				console.log(3);
+					seller[id] = {};
+				}
+			}
+
+			console.log(seller.id);
+			seller[id][key] = value;
+			window.localStorage.__seller__ = JSON.stringify(seller);
+		}
+	</script>
+</body>
+</html>
